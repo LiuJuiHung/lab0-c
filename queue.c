@@ -96,6 +96,22 @@ bool q_insert_tail(queue_t *q, char *s)
 {
     /* You need to write the complete code for this function */
     /* Remember: It should operate in O(1) time */
+    if (!q)
+        return false;
+    list_ele_t *newt;
+    newt = malloc(sizeof(list_ele_t));
+    if (newt) {
+        newt->value = strdup(s);
+        if (q->q_size == 0)
+            q->head = newt;
+        else {
+            q->tail->next = newt;
+        }
+        newt->next = NULL;
+        q->tail = newt;
+        q->q_size++;
+        return true;
+    }
     return false;
 }
 
