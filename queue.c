@@ -170,18 +170,17 @@ void q_reverse(queue_t *q)
     /* You need to write the code for this function */
     if (!q || !q->head)
         return;
-    list_ele_t *cur, *next, *pre, *shead, *stail;
-    shead = q->head;
-    stail = q->tail;
+    list_ele_t *cur, *next, *pre, *tmp;
     next = q->head->next;
     cur = q->head;
+    tmp = q->tail;
+    q->tail = q->head;
+    q->head = tmp;
     while (next) {
         pre = cur;
         cur = next;
         next = next->next;
         cur->next = pre;
     }
-    q->head = stail;
-    q->tail = shead;
     q->tail->next = NULL;
 }
